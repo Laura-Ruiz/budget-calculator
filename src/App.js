@@ -1,22 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import Presupuesto from './components/Presupuesto'
+import PrecioTotal from './components/PrecioTotal'
+
 
 function App() {
+  const [formData, setFormData] = React.useState(
+    {
+      paginaWeb: false,
+      numPag: 0,
+      numIdiom: 0,
+      consultoriaSEO: false,
+      googleAds: false
+    }
+  )
+
+  
+  
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h3>
+          ¿Qué quieres hacer?
+        </h3>
+        <form>
+        <Presupuesto formData={formData} setFormData={setFormData} />
+        </form>
+        <PrecioTotal formData={formData} />
       </header>
     </div>
   );
