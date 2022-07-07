@@ -2,43 +2,33 @@ import React from 'react'
 
 
 export default function Panell(props) {
+   
+   const numPag = parseInt(props.formData.numPag);
+   const numIdiom = parseInt(props.formData.numIdiom);
 
-   function incrementar(event) {
+   function counter(event, i) {
+            
       let { name } = event.target
-      props.setFormData(prevFormData => {
-         return {
-            ...prevFormData,
-            [name]: name === "numPag" ? props.formData.numPag++ : props.formData.numIdiom++
-         }
-      })
 
-   }
-
-   function disminuir(event) {
-      let { name } = event.target
-      props.setFormData(prevFormData => {
-         // if (props.formData.numPag = 0 || props.formData.numIdiom === 0) {
-         //    return 0
-         // }
-         return {
-            ...prevFormData,
-            [name]: name === "numPag" ? props.formData.numPag-- : props.formData.numIdiom--
-         }
-      })
-
-   }
-
+         props.setFormData(prevFormData => {
+               return {
+                  ...prevFormData,
+                  [name]: name === "numPag" ? numPag + i : numIdiom + i
+               }
+            })
+      }
+    
    return (
       <div>
          <label>Número de páginas</label>
          <input
             type="button"
             value="+"
-            onClick={incrementar}
+            onClick={(e)=>counter(e,1)}
             name="numPag"
          />
          <input
-            type="number"
+            type="text"
             name="numPag"
             id="numPag"
             value={props.formData.numPag}
@@ -48,7 +38,7 @@ export default function Panell(props) {
          <input
             type="button"
             value="-"
-            onClick={disminuir}
+            onClick={(e)=> {if(props.formData.numPag > 0) return counter(e,-1)}}
             name="numPag"
          />
          <div>
@@ -56,11 +46,11 @@ export default function Panell(props) {
             <input
                type="button"
                value="+"
-               onClick={incrementar}
+               onClick={(e)=>counter(e,1)}
                name="numIdiom"
             />
             <input
-               type="number"
+               type="text"
                name="numIdiom"
                id="numIdiom"
                value={props.formData.numIdiom}
@@ -69,7 +59,7 @@ export default function Panell(props) {
             <input
                type="button"
                value="-"
-               onClick={disminuir}
+               onClick={(e)=> {if(props.formData.numIdiom > 0) return counter(e,-1)}}
                name="numIdiom"
             />
          </div>

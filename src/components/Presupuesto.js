@@ -2,19 +2,20 @@ import Panell from "./Panell"
 import { StylePanell } from '../styled'
 
 export default function Presupuesto(props) {
-
+ 
   function handleChange(event) {
-
+        
     const { name, value, type, checked } = event.target
     props.setFormData(prevFormData => {
+      
       return {
         ...prevFormData,
-        [name]: type === "checkbox" ? checked : value
+        [name]: type === "checkbox" ? checked : (value < 0 || isNaN(value)) ? 0 : value
       }
     })
 
   }
-  console.log("presupuesto", props)
+  
   return (
     <div>
       <div>
@@ -37,6 +38,7 @@ export default function Presupuesto(props) {
           checked={props.formData.consultoriaSEO}
           onChange={handleChange}
           name="consultoriaSEO"
+          
         />
         <label htmlFor="consultoriaSEO">Una consultoria SEO (300 Euros)</label>
       </div>
