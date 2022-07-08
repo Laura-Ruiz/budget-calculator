@@ -8,4 +8,16 @@ export const StylePanell = styled.div`
     display: ${props => props.visibility};
     
 `
-    
+export const StyledInicio = styled.div`
+    text-align: center;
+`
+
+export const StyledBtn = styled.button`
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+
+    a{
+        text-decoration: none;
+    }
+`
