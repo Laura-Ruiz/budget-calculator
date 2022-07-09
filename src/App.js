@@ -1,10 +1,8 @@
-
-import Presupuesto from './components/Presupuesto'
-import PrecioTotal from './components/PrecioTotal'
-import Inicio from './components/Inicio'
 import React, { useEffect } from 'react'
-import { StyledBtn } from './styled'
-import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom"
+import Presupuesto from './components/Presupuesto'
+import Inicio from './components/Inicio'
+import { Routes, Route } from "react-router-dom"
+
 
 function App() {
   const [formData, setFormData] = React.useState(
@@ -32,31 +30,16 @@ function App() {
     localStorage.setItem("check", JSON.stringify(formData));
   }, [formData])
 
-
   return (
-    <BrowserRouter>
-      <div className="App">
-        <header className="App-header">
-          <StyledBtn className='btn-inicio'>
-            <NavLink to="/">
-              Inicio
-            </NavLink>
-          </StyledBtn>
-          <StyledBtn className='btn-presupuesto'>
-            <NavLink to="/presupuesto">
-              presupuesto
-            </NavLink>
-          </StyledBtn>
-          <Routes>
-            <Route path="/presupuesto" element={<div><Presupuesto formData={formData} setFormData={setFormData} /> <PrecioTotal formData={formData} /> </div>}>
-              Presupuesto
-            </Route>
-            <Route path="/" element={<Inicio />}>
-            </Route>
-          </Routes>
-        </header>
-      </div >
-    </BrowserRouter >
+    <div className="App">
+
+      <Routes>
+        <Route path="/presupuesto" element={<Presupuesto formData={formData} setFormData={setFormData} />} />
+        <Route path="/" element={<Inicio />} />
+      </Routes>
+
+    </div >
+
   );
 }
 

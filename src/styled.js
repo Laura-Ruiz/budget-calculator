@@ -21,3 +21,12 @@ export const StyledBtn = styled.button`
         text-decoration: none;
     }
 `
+
+export const BtnImg = styled.button`
+    border: none;
+    background: transparent;
+    img{
+        width: 1.5rem;
+    }
+   
+`

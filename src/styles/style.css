@@ -1,0 +1,53 @@
+body{
+    font-size: large;
+    margin: 2rem;
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.2);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-inner {
+    position: relative;
+    padding: 32px;
+    width: 100%;
+    max-width: 640px;
+    background-color: #FFF;
+    border: 5px solid black;
+    border-radius: 2rem;;
+}
+
+.btn-contador{
+    background-color: rgba(235, 83, 28, 0.902);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    height: 27px;
+    width: 26px;
+    font-size: x-large;
+    
+}
+
+.container-input{
+    display: flex;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    gap: 0.5rem;
+}
+
+
+.input{
+    width: 2rem;
+    border: none;
+    
+}
+
