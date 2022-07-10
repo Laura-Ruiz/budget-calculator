@@ -1,8 +1,5 @@
 import React from 'react'
-// import Popup from './Popup';
-import { BtnImg } from '../styled';
-import imgInfo from "../img/info.png";
-
+import Popup from './Popup';
 
 
 export default function Panell(props) {
@@ -22,12 +19,6 @@ export default function Panell(props) {
       })
    }
 
-   const [buttonPopup, setButtonPopup] = React.useState(false)
-
-   function openModal() {
-      console.log("trigger", buttonPopup)
-      setButtonPopup(true)
-   }
 
    return (
       <div>
@@ -56,9 +47,7 @@ export default function Panell(props) {
                onClick={(e) => { if (props.formData.numPag > 0) return counter(e, -1) }}
                name="numPag"
             />
-
-            <BtnImg onClick={() => setButtonPopup(true)}><img src={imgInfo} alt="info icon" /></BtnImg>
-            {/* <button onClick={props.openModal}>i</button> */}
+            <Popup texto="En aquest component heu d'indicar el número de pàgines que tindrà la seva web." />
          </div>
          <div>
             <div className='container-input'>
@@ -85,13 +74,9 @@ export default function Panell(props) {
                   onClick={(e) => { if (props.formData.numIdiom > 0) return counter(e, -1) }}
                   name="numIdiom"
                />
-               <BtnImg onClick={() => setButtonPopup(true)}><img src={imgInfo} alt="info icon" /></BtnImg>
+               <Popup texto="En aquest component heu d'indicar el número d'idiomes que tindrà la seva web." />
             </div>
          </div>
-         {/* <button onClick={openModal}>Open PopUp</button>
-         <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-            <p>MY POPUP</p>
-         </Popup> */}
       </div >
 
    )

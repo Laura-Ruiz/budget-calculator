@@ -18,12 +18,6 @@ export default function Presupuesto(props) {
     })
 
   }
-  const [buttonPopup, setButtonPopup] = React.useState(false)
-
-  function openModal() {
-    console.log("trigger", buttonPopup)
-    setButtonPopup(true)
-  }
 
   return (
     <div>
@@ -67,10 +61,7 @@ export default function Presupuesto(props) {
         </div>
       </form>
       <PrecioTotal formData={props.formData} />
-      <button onClick={openModal}>Open PopUp</button>
-      <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-        <p>MY POPUP</p>
-      </Popup>
+
     </div>
   )
 }

@@ -4,7 +4,7 @@ body{
 }
 
 .popup {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -16,16 +16,22 @@ body{
     align-items: center;
 }
 
+
 .popup-inner {
-    position: relative;
     padding: 32px;
     width: 100%;
     max-width: 640px;
     background-color: #FFF;
     border: 5px solid black;
-    border-radius: 2rem;;
+    border-radius: 2rem;
+    text-align: center;
 }
 
+.container-img{
+    position: relative;
+    display: inline-block;
+
+}
 .btn-contador{
     background-color: rgba(235, 83, 28, 0.902);
     color: white;

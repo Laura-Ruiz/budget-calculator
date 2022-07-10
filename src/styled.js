@@ -22,11 +22,8 @@ export const StyledBtn = styled.button`
     }
 `
 
-export const BtnImg = styled.button`
-    border: none;
-    background: transparent;
-    img{
-        width: 1.5rem;
-    }
-   
-`
+export const BtnImg = styled.img`
+width: 28px;
+cursor: pointer;
+position: relative;
+`;
