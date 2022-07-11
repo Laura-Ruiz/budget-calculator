@@ -8,11 +8,14 @@ function App() {
   const [formData, setFormData] = React.useState(
     () => {
       const iniciar = {
+        nomPres: "",
+        cliente: "",
         paginaWeb: false,
         numPag: 0,
         numIdiom: 0,
         consultoriaSEO: false,
-        googleAds: false
+        googleAds: false,
+
       }
 
       try {

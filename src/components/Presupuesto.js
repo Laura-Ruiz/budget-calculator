@@ -1,29 +1,62 @@
 import React from "react";
 import Panell from "./Panell"
-import Popup from './Popup';
+import GenerarPresup from "./GenerarPresup"
+
 import { StylePanell } from '../styled'
 import PrecioTotal from "./PrecioTotal";
 
-export default function Presupuesto(props) {
 
+export default function Presupuesto(props) {
+  console.log("propsPres", props)
   function handleChange(event) {
 
-    const { name, value, type, checked } = event.target
+    const { name, value, type, checked, className } = event.target
     props.setFormData(prevFormData => {
 
       return {
         ...prevFormData,
-        [name]: type === "checkbox" ? checked : (value < 0 || isNaN(value)) ? 0 : value
+        [name]: type === "checkbox" ? checked : className === "input" && (value < 0 || isNaN(value)) ? 0 : value
+        // [name]: type === "checkbox" ? checked : (value < 0 || isNaN(value)) ? 0 : value
       }
     })
 
   }
 
+  function totalPrice(){
+    let precio = (props.formData.paginaWeb ? 500 : 0) +
+    (props.formData.consultoriaSEO ? 300 : 0) + (props.formData.googleAds ? 200 : 0);
+    precio += (props.formData.paginaWeb ? (props.formData.numPag) * (props.formData.numIdiom) * 30 : 0)
+    
+    return precio;
+  }
+
   return (
-    <div>
-      <form>
+    <div id="main-presupuesto">
+      <form id="form">
+        <div className="container-client">
+          <div>
+            <label htmlFor="nomPres"> Nom de pressupost:</label>
+            <input
+              type="text"
+              id="nomPres"
+              value={props.formData.nomPres}
+              name="nomPres"
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="cliente"> Nom client:</label>
+            <input
+              type="text"
+              id="cliente"
+              value={props.formData.cliente}
+              name="cliente"
+              onChange={handleChange}
+            />
+          </div>
+        </div>
         <h3>
-          ¿Qué quieres hacer?
+          ¿Què vols fer?
         </h3>
         <div>
           <input
@@ -59,9 +92,11 @@ export default function Presupuesto(props) {
           />
           <label htmlFor="googleAds"> Una campanya de Google Ads (200 Euros)</label>
         </div>
+        <PrecioTotal formData={props.formData} totalPrice={totalPrice} />
       </form>
-      <PrecioTotal formData={props.formData} />
-
+      <div>
+        <GenerarPresup formData={props.formData} totalPrice={totalPrice}/>
+      </div>
     </div>
   )
 }
