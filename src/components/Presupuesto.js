@@ -1,7 +1,8 @@
 import React from "react";
 import Panell from "./Panell"
 import GenerarPresup from "./GenerarPresup"
-
+import { StyledBtn } from '../styled'
+import { Link } from "react-router-dom"
 import { StylePanell } from '../styled'
 import PrecioTotal from "./PrecioTotal";
 
@@ -19,7 +20,7 @@ export default function Presupuesto(props) {
         // [name]: type === "checkbox" ? checked : (value < 0 || isNaN(value)) ? 0 : value
       }
     })
-
+    
   }
 
   function totalPrice(){
@@ -30,8 +31,14 @@ export default function Presupuesto(props) {
     return precio;
   }
 
+  
+
   return (
-    <div id="main-presupuesto">
+    <div>
+        <StyledBtn className='btn-inicio'>
+        <Link to="/">Tornar a l'inici</Link>
+      </StyledBtn>
+      <div id="main-presupuesto">
       <form id="form">
         <div className="container-client">
           <div>
@@ -93,10 +100,14 @@ export default function Presupuesto(props) {
           <label htmlFor="googleAds"> Una campanya de Google Ads (200 Euros)</label>
         </div>
         <PrecioTotal formData={props.formData} totalPrice={totalPrice} />
+        
       </form>
+
       <div>
         <GenerarPresup formData={props.formData} totalPrice={totalPrice}/>
       </div>
+      
+    </div>
     </div>
   )
 }
