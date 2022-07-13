@@ -4,22 +4,16 @@ import { useState } from "react";
 export default function GenerarPresup(props) {
 
     const current = new Date();
-    //const date = current.toString();
-    //const date = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()} ${current.getHours()}:${current.getMinutes()}`;
-
-
     const price = props.totalPrice()
 
     const [budgets, setBudgets] = useState([]);
-    console.log("budget", budgets)
     const [found, setFound] = useState([]);
-    console.log("found", found)
+
 
     function handleAddUser() {
         const newUser = {
             nomPres: props.formData.nomPres,
             cliente: props.formData.cliente,
-            //data: date,
             fecha: current,
             paginaWeb: props.formData.paginaWeb,
             numPag: props.formData.numPag,
@@ -30,7 +24,7 @@ export default function GenerarPresup(props) {
             search: props.formData.search
         }
         setBudgets([newUser, ...budgets])
-        setFound([newUser, ...budgets])
+        setFound([newUser, ...found])
     }
 
 
@@ -90,24 +84,22 @@ export default function GenerarPresup(props) {
         filterBudget(value)
     }
 
-    let lowerCaseValue;
+
     function filterBudget(value) {
 
-        lowerCaseValue = value.toLowerCase().trim();
-        console.log("lowerCase", lowerCaseValue)
+        let lowerCaseValue = value.toLowerCase().trim();
+
         if (lowerCaseValue === undefined) {
-            console.log(budgets)
-            setBudgets([...budgets])
+            setFound([...budgets])
         } else {
             const filteredName = [...budgets].filter(item => {
                 return item.nomPres.toLowerCase().includes(lowerCaseValue)
             });
-            console.log(filteredName)
             setFound(filteredName);
         }
     }
-    const array = (lowerCaseValue === "") ? budgets : found;
-    console.log(array)
+
+
     return (
         <div >
             <div id="crearPresupuesto">
@@ -133,12 +125,12 @@ export default function GenerarPresup(props) {
                 <button onClick={orderByDataReverse}>Més antic</button>
             </div>
             <div id="container-card">
-                {array.map((budget, index) => (
+                {found.map((budget, index) => (
                     <div key={`card-${index}`} id="card">
                         <p><b>Nom pressupost:</b> {budget.nomPres}</p>
                         <p><b>Client:</b> {budget.cliente}</p>
                         <p><b>Preu final:</b> {budget.precio} €</p>
-                        <p><b>Data:</b> {budget.fecha.toString()}</p>
+                        <p><b>Data:</b> {budget.fecha.toString().slice(0, 24)}</p>
                     </div>
                 ))}
             </div>
