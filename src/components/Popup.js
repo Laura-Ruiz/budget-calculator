@@ -9,7 +9,6 @@ export default function Popup(props) {
 
     const [showPopup, setShowPopup] = useState(false);
 
-
     function openPopup() {
         setShowPopup(true);
     }

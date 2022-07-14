@@ -1,17 +1,34 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function GenerarPresup(props) {
 
     const current = new Date();
     const price = props.totalPrice()
 
-    const [budgets, setBudgets] = useState([]);
-    const [found, setFound] = useState([]);
+    const [budgets, setBudgets] = useState(
+        () => {
+            const initial = [];
+
+            try {
+                const data = localStorage.getItem("budget");
+                return data ? JSON.parse(data) : initial
+            } catch (e) {
+                return initial
+            }
+
+        });
 
 
-    function handleAddUser() {
-        const newUser = {
+    useEffect(() => {
+        localStorage.setItem("budget", JSON.stringify(budgets));
+    }, [budgets])
+
+
+    const [found, setFound] = useState([...budgets])
+
+    function handleAddBudget() {
+        const newBudget = {
             nomPres: props.formData.nomPres,
             cliente: props.formData.cliente,
             fecha: current,
@@ -23,8 +40,8 @@ export default function GenerarPresup(props) {
             precio: price,
             search: props.formData.search
         }
-        setBudgets([newUser, ...budgets])
-        setFound([newUser, ...found])
+        setBudgets([newBudget, ...budgets])
+        setFound([newBudget, ...found])
     }
 
 
@@ -40,8 +57,10 @@ export default function GenerarPresup(props) {
             return 0
         })
 
-        setBudgets(result)
+        setFound(result);
+
     }
+
     function orderAlphabeticallyReverse() {
         const result = [...budgets]
         result.sort(function (a, b) {
@@ -54,25 +73,22 @@ export default function GenerarPresup(props) {
             return 0
         })
 
-        setBudgets(result)
+        setFound(result);
     }
-
 
     function orderByData() {
         const result = [...budgets].sort(function (a, b) {
             return b.fecha - a.fecha
         })
-        setBudgets(result)
+        setFound(result);
     }
-
 
     function orderByDataReverse() {
         const result = [...budgets].sort(function (a, b) {
             return a.fecha - b.fecha
         })
-        setBudgets(result)
+        setFound(result);
     }
-
 
     const [searchText, setSearchText] = useState('')
 
@@ -83,7 +99,6 @@ export default function GenerarPresup(props) {
         setSearchText(value)
         filterBudget(value)
     }
-
 
     function filterBudget(value) {
 
@@ -99,11 +114,10 @@ export default function GenerarPresup(props) {
         }
     }
 
-
     return (
         <div >
             <div id="crearPresupuesto">
-                <button onClick={handleAddUser}>Nou pressupost</button>
+                <button onClick={handleAddBudget}>Nou pressupost</button>
             </div>
             <div>
                 Buscador :
@@ -117,7 +131,6 @@ export default function GenerarPresup(props) {
 
                 />
             </div>
-
             <div>
                 <button onClick={orderAlphabetically}>A-Z</button>
                 <button onClick={orderAlphabeticallyReverse}>Z-A</button>
@@ -130,7 +143,16 @@ export default function GenerarPresup(props) {
                         <p><b>Nom pressupost:</b> {budget.nomPres}</p>
                         <p><b>Client:</b> {budget.cliente}</p>
                         <p><b>Preu final:</b> {budget.precio} €</p>
-                        <p><b>Data:</b> {budget.fecha.toString().slice(0, 24)}</p>
+                        <p><b>Data:</b> {new Date(budget.fecha).toLocaleDateString("es-ES",
+                            {
+                                year: '2-digit',
+                                month: '2-digit',
+                                day: '2-digit',
+                                hour: '2-digit',
+                                minute: '2-digit',
+                                second: '2-digit',
+
+                            })}</p>
                     </div>
                 ))}
             </div>
