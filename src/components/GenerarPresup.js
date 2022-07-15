@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 export default function GenerarPresup(props) {
 
     const current = new Date();
+    const parseCurrent = Date.parse(current);
     const price = props.totalPrice()
 
     const [budgets, setBudgets] = useState(
@@ -31,7 +32,7 @@ export default function GenerarPresup(props) {
         const newBudget = {
             nomPres: props.formData.nomPres,
             cliente: props.formData.cliente,
-            fecha: current,
+            fecha: parseCurrent,
             paginaWeb: props.formData.paginaWeb,
             numPag: props.formData.numPag,
             numIdiom: props.formData.numIdiom,
@@ -41,12 +42,12 @@ export default function GenerarPresup(props) {
             search: props.formData.search
         }
         setBudgets([newBudget, ...budgets])
-        setFound([newBudget, ...found])
+        setFound([newBudget, ...budgets])
     }
 
 
     function orderAlphabetically() {
-        const result = [...budgets]
+        const result = [...found]
         result.sort(function (a, b) {
             if (a.nomPres > b.nomPres) {
                 return 1;
@@ -62,7 +63,7 @@ export default function GenerarPresup(props) {
     }
 
     function orderAlphabeticallyReverse() {
-        const result = [...budgets]
+        const result = [...found]
         result.sort(function (a, b) {
             if (a.nomPres < b.nomPres) {
                 return 1;
@@ -77,16 +78,18 @@ export default function GenerarPresup(props) {
     }
 
     function orderByData() {
-        const result = [...budgets].sort(function (a, b) {
+        const result = [...found].sort(function (a, b) {
             return b.fecha - a.fecha
         })
+        console.log("alpha", result)
         setFound(result);
     }
 
     function orderByDataReverse() {
-        const result = [...budgets].sort(function (a, b) {
+        const result = [...found].sort(function (a, b) {
             return a.fecha - b.fecha
         })
+        console.log("beta", result)
         setFound(result);
     }
 
