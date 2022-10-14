@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/budget-calculator/static/css/main.b52dfafb.css",
+    "main.js": "/budget-calculator/static/js/main.10c176b1.js",
+    "static/media/presupuesto.jpg": "/budget-calculator/static/media/presupuesto.a1bc873c24a62757769c.jpg",
+    "static/media/backgroundImage.jpg": "/budget-calculator/static/media/backgroundImage.23005425390d2285d3e8.jpg",
+    "static/media/info.png": "/budget-calculator/static/media/info.378edcb85a8f524d4e50.png",
+    "index.html": "/budget-calculator/index.html",
+    "main.b52dfafb.css.map": "/budget-calculator/static/css/main.b52dfafb.css.map",
+    "main.10c176b1.js.map": "/budget-calculator/static/js/main.10c176b1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b52dfafb.css",
+    "static/js/main.10c176b1.js"
+  ]
+}
