@@ -1,14 +1,7 @@
-import React from 'react';
-
+import React from "react";
 
 export default function PrecioTotal(props) {
+  let precio = props.totalPrice();
 
-    let precio = props.totalPrice()
-
-    return (
-      <div >
-        Preu: {precio} €
-    </div>
-     
-    )
+  return <h3 id="price">Precio total: {precio} €</h3>;
 }
